@@ -4,7 +4,7 @@ module.exports = async (req, res, next) => {
     try {
         const user = await User.findById(req.session.userId)
         // console.log(req.session.userId)
-        // console.log(user)
+        console.log(user)
         if (!user) {
             console.log("No user founded")
             return res.redirect('/')
