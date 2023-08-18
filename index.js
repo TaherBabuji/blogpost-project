@@ -20,8 +20,7 @@ app.use(expressSession({
     secret: 'keyboard cat',
     cookie: {
         secure: true,
-        httpOnly: true,
-        domain: '.good-pink-sawfish-tutu.cyclic.cloud'
+        httpOnly: true
     }
 }));
 
