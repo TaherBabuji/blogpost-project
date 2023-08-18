@@ -22,9 +22,10 @@ app.use(expressSession({
     proxy: true,
     resave: false,
     cookie: {
-        maxAge: 24*60*60*1000, //please change it based on your needs
-        secure: true,
-        sameSite: 'none' 
+        httpOnly: true,
+        secure: true, 
+        maxAge: 1000 * 60 * 60 * 48,
+        sameSite: 'none'
     }
 }));
 
