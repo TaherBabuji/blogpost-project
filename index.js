@@ -21,7 +21,7 @@ app.use(expressSession({
     cookie: {
         secure: true,
         httpOnly: true,
-        domain: '.cyclic.cloud'
+        domain: '.good-pink-sawfish-tutu.cyclic.cloud'
     }
 }));
 
