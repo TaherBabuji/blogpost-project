@@ -19,7 +19,9 @@ const expressSession = require('express-session')
 app.use(expressSession({
     secret: 'keyboard cat',
     cookie: {
-        httpOnly: true
+        maxAge: 24*60*60*1000, //please change it based on your needs
+        secure: app.get('env') === 'production'?true:false,
+        sameSite: 'none' 
     }
 }));
 
