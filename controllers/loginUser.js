@@ -13,6 +13,13 @@ module.exports = async (req, res) => {
                 // store user session, will talk about it later
                 console.log(password)
                 req.session.userId = user._id
+                req.session.save(function() {
+                    if(req.session.userId){
+                      console.log({user});
+                    }else{
+                      consol.log( 'not log in' );
+                    }
+                  });
                 res.redirect('/')
             } else {
                 req.flash('validationErrors', ['Please Provide Valid Password']);
