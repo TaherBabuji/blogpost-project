@@ -19,7 +19,6 @@ const expressSession = require('express-session')
 app.use(expressSession({
     secret: 'keyboard cat',
     cookie: {
-        secure: true,
         httpOnly: true
     }
 }));
