@@ -17,6 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 const expressSession = require('express-session')
 app.enable('trust proxy')
+app.set("trust proxy", 1);
 app.use(expressSession({
     secret: 'keyboard cat',
     proxy: true,
