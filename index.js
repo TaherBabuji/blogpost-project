@@ -16,10 +16,13 @@ app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
 
-global.loggedIn = null;
 app.use("*", (req, res, next) => {
-    loggedIn = req.session.userId;
-    next()
+    if (req.session && req.session.userId) {
+        loggedIn = req.session.userId;
+    } else {
+        loggedIn = null;
+    }
+    next();
 });
 
 const expressSession = require('express-session')
