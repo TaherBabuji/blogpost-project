@@ -17,7 +17,7 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 const expressSession = require('express-session')
-app.enable('trust proxy')
+// app.enable('trust proxy')
 // app.set("trust proxy", 1);
 // app.use(expressSession({
 //     secret: 'keyboard cat',
@@ -32,19 +32,27 @@ app.enable('trust proxy')
 //     }
 // }));
 
-app.use(expressSession({
-    secret: 'keyboard cat',
-    proxy: true,
+// app.use(expressSession({
+//     secret: 'keyboard cat',
+//     proxy: true,
+//     resave: false,
+//     saveUninitialized: false, // Set this to false
+//     name: 'MyCoolWebAppCookieName',
+//     cookie: {
+//         httpOnly: true,
+//         secure: true, 
+//         maxAge: 1000 * 60 * 60 * 48,
+//         sameSite: 'none'
+//     }
+// }));
+
+app.use(session({
+    name: "session-id",
+    secret: "GFGEnter", // Secret key,
+    saveUninitialized: false,
     resave: false,
-    saveUninitialized: false, // Set this to false
-    name: 'MyCoolWebAppCookieName',
-    cookie: {
-        httpOnly: true,
-        secure: true, 
-        maxAge: 1000 * 60 * 60 * 48,
-        sameSite: 'none'
-    }
-}));
+    store: new filestore()
+}))
 
 
 app.use("*", (req, res, next) => {
