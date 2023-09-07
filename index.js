@@ -15,6 +15,13 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true }))
 
+
+global.loggedIn = null;
+app.use("*", (req, res, next) => {
+    loggedIn = req.session.userId;
+    next()
+});
+
 const expressSession = require('express-session')
 app.enable('trust proxy')
 app.set("trust proxy", 1);
@@ -33,12 +40,6 @@ app.use(expressSession({
 
 const flash = require('connect-flash');
 app.use(flash());
-
-global.loggedIn = null;
-app.use("*", (req, res, next) => {
-    loggedIn = req.session.userId;
-    next()
-});
 
 //Requiring Controllers
 const newPostController = require('./controllers/newPost')
