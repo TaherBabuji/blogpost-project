@@ -46,7 +46,7 @@ const expressSession = require('express-session')
 //     }
 // }));
 
-app.use(session({
+app.use(expressSession({
     name: "session-id",
     secret: "GFGEnter", // Secret key,
     saveUninitialized: false,
