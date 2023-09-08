@@ -25,7 +25,6 @@ app.use(expressSession({
     resave: false,
     saveUninitialized: false,
     name: 'MyCoolWebAppCookieName',
-    store: new filestore(),
     cookie: {
         httpOnly: true,
         secure: true, 
