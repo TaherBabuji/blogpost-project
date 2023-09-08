@@ -23,7 +23,9 @@ app.use(expressSession({
     secret: 'keyboard cat',
     proxy: true,
     resave: false,
+    saveUninitialized: false,
     name: 'MyCoolWebAppCookieName',
+    store: new filestore(),
     cookie: {
         httpOnly: true,
         secure: true, 
