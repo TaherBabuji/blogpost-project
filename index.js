@@ -17,7 +17,6 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 const expressSession = require('express-session')
-const proxy = require('express-http-proxy');
 // app.enable('trust proxy')
 // app.set("trust proxy", 1);
 // app.use(expressSession({
