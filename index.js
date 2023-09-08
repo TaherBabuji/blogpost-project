@@ -17,21 +17,22 @@ app.use(bodyParser.urlencoded({ extended: true }))
 
 
 const expressSession = require('express-session')
-app.enable('trust proxy')
-app.set("trust proxy", 1);
-app.use(expressSession({
-    secret: 'keyboard cat',
-    proxy: true,
-    resave: false,
-    saveUninitialized: false,
-    name: 'MyCoolWebAppCookieName',
-    cookie: {
-        httpOnly: true,
-        secure: true, 
-        maxAge: 1000 * 60 * 60 * 48,
-        sameSite: 'none'
-    }
-}));
+const proxy = require('express-http-proxy');
+// app.enable('trust proxy')
+// app.set("trust proxy", 1);
+// app.use(expressSession({
+//     secret: 'keyboard cat',
+//     proxy: true,
+//     resave: false,
+//     saveUninitialized: false,
+//     name: 'MyCoolWebAppCookieName',
+//     cookie: {
+//         httpOnly: true,
+//         secure: true, 
+//         maxAge: 1000 * 60 * 60 * 48,
+//         sameSite: 'none'
+//     }
+// }));
 
 // app.use(expressSession({
 //     secret: 'keyboard cat',
@@ -49,6 +50,21 @@ app.use(expressSession({
 //     }
 // }));
 
+app.use(expressSession({
+    secret: 'keyboard cat',
+    cookie: {
+      maxAge: 60000
+    },
+    value: 0
+  })
+);
+app.get('/api', (req, res) => {
+  req.session.value ++;
+  res.json({
+    session: req.session.value
+  });
+});
+app.use(proxy('http://127.0.0.1:8080'));
 
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
