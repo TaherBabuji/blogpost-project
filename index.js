@@ -64,7 +64,7 @@ app.get('/api', (req, res) => {
     session: req.session.value
   });
 });
-app.use(proxy('http://127.0.0.1:8080'));
+app.use(proxy('http://127.0.0.1:8099'));
 
 app.use("*", (req, res, next) => {
     loggedIn = req.session.userId;
